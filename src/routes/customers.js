@@ -57,7 +57,7 @@ try {
 
 
 router.post("/login", async(req, res)=>{
-    const customer = await Customer.find({
+    const customer = await Customer.findOne({
     email: req.body.email
     })
     if(!customer){
