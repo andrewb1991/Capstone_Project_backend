@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 dotenv.config()
 
-const port = 7070
+const port = 6060
 const app = express()
 const cors = require("cors")
 const logMiddlewares = require("./middlewares/logMiddlewares")

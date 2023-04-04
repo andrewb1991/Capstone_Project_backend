@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 
 const Customer = require("../schemas/cutomers")
 
-router.get("/customers", async(req,res)=>{
+router.get("/register", async(req,res)=>{
     try {
         const allcustomers = await Customer.find()
         res.status(200).send(allcustomers)
@@ -31,7 +31,7 @@ router.get("/login", async(req, res)=>{
 
 })
 
-router.post("/login", async(req, res)=>{
+router.post("/register", async(req, res)=>{
     const salt = await bcrypt.genSalt(10)
     const hashpassword = await bcrypt.hash(req.body.password, salt)
     // const result = await cloudinary.uploader.upload(req.file.filename)
@@ -68,7 +68,7 @@ router.post("/login", async(req, res)=>{
     return res.status(400).send("Password non valida")
     }
     const token = jwt.sign({
-    email: user.email
+    email: customer.email
     }, process.env.JWT_SECRET, {expiresIn: "15m"})
     res.header("Authorization", token).status(200).send({
     email: customer.email,
