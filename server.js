@@ -7,10 +7,13 @@ const port = 7070
 const app = express()
 const cors = require("cors")
 const logMiddlewares = require("./middlewares/logMiddlewares")
+const customersRoute = require("./src/routes/customers")
+
+app.use(logMiddlewares)
 
 app.use(express.json())
 app.use(cors())
-app.use(logMiddlewares)
+app.use(customersRoute)
 
 
 mongoose.connect(process.env.MONGO_DB_URL)
