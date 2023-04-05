@@ -19,10 +19,10 @@ try {
 
 
 router.post("/allproducts",  upload.single('image'), async(req, res)=>{
-    const result = await cloudinary.uploader(req.file.filename)
+    // const result = await cloudinary.uploader(req.file.filename)
     const product = new Products({
     product: req.body.product,
-    thumbnail: result.secure_url,
+    thumbnail: req.body.thumbnail,
     description: req.body.description,
     category: req.body.category,
     price: req.body.price

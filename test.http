@@ -51,5 +51,9 @@ Content-Type: application/json
 "thumbnail": "prova",
 "description": "prova",
 "category": "prova",
-"price": "prova"
+"price": 5
 }
+
+#####
+
+GET http://localhost:6060/auth/employess

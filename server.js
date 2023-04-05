@@ -10,11 +10,14 @@ const logMiddlewares = require("./middlewares/logMiddlewares")
 const customersRoute = require("./src/routes/customers")
 const productsRoute = require("./src/routes/products")
 app.use(logMiddlewares)
+const employeesRoute = require("./src/routes/employess")
 
 app.use(express.json())
 app.use(cors())
 app.use(customersRoute)
 app.use(productsRoute)
+app.use(employeesRoute)
+
 
 mongoose.connect(process.env.MONGO_DB_URL)
 const db = mongoose.connection
