@@ -18,7 +18,7 @@ router.get("/register", async(req,res)=>{
 
 })
 
-router.get("/auth/login", async(req, res)=>{
+router.get("/login", async(req, res)=>{
     try {
         const allcustomers = await Customer.find()
         res.status(200).send(allcustomers)
@@ -56,7 +56,7 @@ try {
 })
 
 
-router.post("/auth/login", async(req, res)=>{
+router.post("/login", async(req, res)=>{
     const customer = await Customer.findOne({
     email: req.body.email
     })
