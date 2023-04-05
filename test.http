@@ -43,17 +43,34 @@ Content-Type: application/json
 GET http://localhost:6060/allproducts 
 
 #####
-POST http://localhost:6060/allproducts HTTP/1.1
+POST http://localhost:7070/allproducts HTTP/1.1
 Content-Type: application/json
 
 {
-"product": "prova",
-"thumbnail": "prova",
-"description": "prova",
-"category": "prova",
+"product": "prova2",
+"thumbnail": "prova2",
+"description": "prova2",
+"category": "prova2",
 "price": 5
 }
 
 #####
 
 GET http://localhost:6060/auth/employess
+
+#####
+
+PATCH  http://localhost:7070/allproducts/642d3a49e505cd3e49a81fda HTTP/1.1
+Content-Type: application/json
+
+{
+"product": "prova2",
+"thumbnail": "prova2",
+"description": "prova2",
+"category": "prova2",
+"price": 5
+}
+
+#####
+
+DELETE http://localhost:7070/allproducts/642dcf0954f96f53a035d4a6

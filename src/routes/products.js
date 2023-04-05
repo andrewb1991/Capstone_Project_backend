@@ -19,7 +19,6 @@ try {
 
 
 router.post("/allproducts",  upload.single('image'), async(req, res)=>{
-    // const result = await cloudinary.uploader(req.file.filename)
     const product = new Products({
     product: req.body.product,
     thumbnail: req.body.thumbnail,
@@ -41,17 +40,56 @@ try {
 }
 })
 
+router.patch("/allproducts/:id", async(req, res)=>{
+    const {id} = req.params
+    const productExist = await Products.findById(id)
+    if(!productExist){
+        res.status(404).send({
+            message: "Product not found"
+        })
+    }
+    try{
+      const infoToUpdate = req.body
+      const options = {
+        new: true
+    } 
+      const result = await Products.findByIdAndUpdate(id, infoToUpdate, options)
+      res.status(200).send({
+        message: "Product updated",
+        payload: result
+    })
+    }
+    catch (error){
+        res.status(500).send({
+            message: "Internal server error",
+            error: error,
+            })    
+    } 
+})
 
 
+router.delete("/allproducts/:id", async(req,res)=>{
+    const {id} = req.params
 
+try{
+const product = await Products.findById(id).deleteOne()
+if(!product){
+return res.status(404).send({
+    message: "Product not found",
+})
+}
+res.status(200).send({
+    message: "Product deleted",
+})
+}
+catch (error){
+    res.status(500).send({
+        message: "Internal server error",
+        error: error
+    })
 
-
-
-
-
-
-
-
+}
+})
 
 
 module.exports = router
