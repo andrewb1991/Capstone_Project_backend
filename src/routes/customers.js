@@ -68,11 +68,12 @@ router.post("/login", async(req, res)=>{
     return res.status(400).send("Password non valida")
     }
     const token = jwt.sign({
-    email: customer.email
+    email: customer.email,
+    name: customer.name,
+    surname: customer.surname
     }, process.env.JWT_SECRET, {expiresIn: "15m"})
     res.header("Authorization", token).status(200).send({
-    email: customer.email,
-    token
+    token,
     })
     })
 
