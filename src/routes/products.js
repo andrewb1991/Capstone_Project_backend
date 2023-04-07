@@ -4,17 +4,17 @@ const Products = require("../schemas/products")
 const cloudinary = require("../utils/cloudinary")
 const multer  = require('multer')
 const upload = multer()
-router.get("/allproducts", async(req, res)=>{
-try {
-    const allproducts = await Products.find()
-    res.status(200).send(allproducts)
-} catch (error) {
-    res.status(500).send({
-    message: "Internal server error",
-    error: error
-    })
-}
-})
+// router.get("/allproducts", async(req, res)=>{
+// try {
+//     const allproducts = await Products.find()
+//     res.status(200).send(allproducts)
+// } catch (error) {
+//     res.status(500).send({
+//     message: "Internal server error",
+//     error: error
+//     })
+// }
+// })
 
 
 
@@ -91,5 +91,17 @@ catch (error){
 }
 })
 
+router.get("/allproducts", async(req, res)=>{
+    let {page, limit} = req.query;
+    try {
+    if(!page) page = 1;
+    if(!limit) limit = 6;
+    const skip = (page -1) * 6;
+    const totalProducts = await Products.find().skip(skip).limit(limit)
+    res.status(200).send(totalProducts)    
+    } catch (error) {
+      console.log(error)  
+    }
+    })
 
 module.exports = router
