@@ -2,6 +2,9 @@ const express = require("express")
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
+const cloudinary = require("../utils/cloudinary")
+const upload = require("../utils/multer")
+const path = require("path")
 
 const Customer = require("../schemas/cutomers")
 
@@ -34,12 +37,13 @@ router.get("/login", async(req, res)=>{
 router.post("/register", async(req, res)=>{
     const salt = await bcrypt.genSalt(10)
     const hashpassword = await bcrypt.hash(req.body.password, salt)
-    // const result = await cloudinary.uploader.upload(req.file.filename)
+    const result = await cloudinary.upload(req.file)
     const customer = new Customer({
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email,
     password: hashpassword,
+    imageprofile: result.secure_url
     })
 try {
     const newcustomer = await customer.save()

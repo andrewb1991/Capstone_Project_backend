@@ -19,6 +19,10 @@ password: {
 type: String,
 required: true,
 min: 8
+},
+profileimage: {
+type: String,
+required: true
 }
 }, {timestamps: true})
 

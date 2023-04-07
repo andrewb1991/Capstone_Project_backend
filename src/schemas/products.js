@@ -21,7 +21,7 @@ required: true,
 max: 50
 },
 price: {
-type: Number,
+type: String,
 required: true,
 max: 10
 }
