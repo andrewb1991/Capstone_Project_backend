@@ -60,17 +60,17 @@ GET http://localhost:6060/auth/employess
 
 #####
 
-PATCH    http://localhost:7070/allproducts/642ff301e9528ead2de243d9 HTTP/1.1
+POST http://localhost:7070/allproducts/ HTTP/1.1
 Content-Type: application/json
 
 {
-"product": "OPPO Find N2 Flip",
-"thumbnail": "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/71p65d7yotL._AC_SL1500_.jpg",
-"description": "OPPO Find N2 Flip è uno smartphone pieghevole lanciato da OPPO anche in Italia.",
-"price": "1199,99",
-"category": "Smartphone"
+"product": "Samsung Galaxy Buds2 ​​​​​​​",
+"thumbnail": "https://m.media-amazon.com/images/I/512fuwvAIwL._AC_SL1500_.jpg",
+"description":"Chiamate chiare: tre microfoni e un'unità di registrazione vocale integrata consentono un'elevata qualità delle chiamate, una soluzione basata sull'apprendimento automatico che filtra il rumore per una buona intelligibilità",
+"price": "89,99",
+"category": "Accessori"
 }
 
 #####
 
-DELETE http://localhost:7070/allproducts/642fe04a456fd63265297551d
+DELETE http://localhost:7070/allproducts/642fe1f03794218ed3662fcc

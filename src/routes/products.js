@@ -95,13 +95,41 @@ router.get("/allproducts", async(req, res)=>{
     let {page, limit} = req.query;
     try {
     if(!page) page = 1;
-    if(!limit) limit = 6;
-    const skip = (page -1) * 6;
+    if(!limit) limit = 8;
+    const skip = (page -1) * 8;
     const totalProducts = await Products.find().skip(skip).limit(limit)
     res.status(200).send(totalProducts)    
     } catch (error) {
       console.log(error)  
     }
     })
+
+
+    //SORTING
+
+    // Define an array of objects to sort
+const items = [
+    { name: "John", category: "A", age: 30 },
+    { name: "Alice", category: "B", age: 25 },
+    { name: "Bob", category: "A", age: 40 },
+    { name: "Jane", category: "C", age: 35 }
+  ];
+  
+  // Define a route to handle the sorting
+//   app.get('/sort/:category', (req, res) => {
+//     // Get the category from the request parameters
+//     const category = req.params.category;
+  
+//     // Filter the array by category
+//     const filteredItems = items.filter(item => item.category === category);
+  
+//     // Sort the filtered array based on age in descending order
+//     filteredItems.sort((a, b) => b.age - a.age);
+  
+//     // Concatenate the sorted array with the items that didn't match the category
+//     const sortedItems = [...filteredItems, ...items.filter(item => item.category !== category)];
+  
+//     // Send the sorted array as a response
+//     res.send(sortedItems);
 
 module.exports = router
