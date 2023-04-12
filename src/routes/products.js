@@ -105,6 +105,7 @@ router.get("/allproducts", async(req, res)=>{
     })
 
 
+
     //SORTING
 
     // Define an array of objects to sort

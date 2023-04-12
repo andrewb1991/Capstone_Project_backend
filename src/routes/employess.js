@@ -16,13 +16,16 @@ try {
 }
 })
 
-router.post("/auth/employees", async(req,res)=>{
+router.post("/register/employees", async(req,res)=>{
 const salt = await bcrypt.genSalt(10)
 const hashpassword = await bcrypt.hash(req.body.password, salt)
 const employee = new Employee({
 code: req.body.code,
+name: req.body.name,
+surname: req.body.surname,
 email: req.body.email,
-password: hashpassword
+password: hashpassword,
+role: req.body.role
 })
 try {
     const newemployee = await employee.save()
@@ -87,6 +90,29 @@ catch (error){
 
 }
 })
+
+router.post("/auth/employees", async(req, res)=>{
+    const employee = await Employee.findOne({
+    email: req.body.email
+    })
+    if(!employee){
+    return res.status(400).send("Utente non trovato")
+    }
+    const validPassword = await bcrypt.compare(req.body.password, employee.password)
+    if(!validPassword){
+    return res.status(400).send("Password non valida")
+    }
+    const token = jwt.sign({
+    email: employee.email,
+    name: employee.name,
+    surname: employee.surname,
+    role: employee.role
+    }, process.env.JWT_SECRET, {expiresIn: "15m"})
+    res.header("Authorization", token).status(200).send({
+    token,
+    })
+    })
+
 
 
 module.exports = router

@@ -74,3 +74,21 @@ Content-Type: application/json
 #####
 
 DELETE http://localhost:7070/allproducts/642fe1f03794218ed3662fcc
+
+#####
+
+GET http://localhost:8080/auth/employees
+
+#####
+
+POST http://localhost:8080/register/employees HTTP/1.1
+Content-Type: application/json
+
+{
+"code": "001",
+"name": "Mario",
+"surname": "Rossi",
+"email": "mario.rossi@admin.com",
+"password": "admin1234",
+"role": "admin"
+}
