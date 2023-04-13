@@ -4,17 +4,19 @@ const Products = require("../schemas/products")
 const cloudinary = require("../utils/cloudinary")
 const multer  = require('multer')
 const upload = multer()
-// router.get("/allproducts", async(req, res)=>{
-// try {
-//     const allproducts = await Products.find()
-//     res.status(200).send(allproducts)
-// } catch (error) {
-//     res.status(500).send({
-//     message: "Internal server error",
-//     error: error
-//     })
-// }
-// })
+
+
+router.get("/allproducts", async(req, res)=>{
+try {
+    const allproducts = await Products.find()
+    res.status(200).send(allproducts)
+} catch (error) {
+    res.status(500).send({
+    message: "Internal server error",
+    error: error
+    })
+}
+})
 
 
 
@@ -91,7 +93,7 @@ catch (error){
 }
 })
 
-router.get("/allproducts", async(req, res)=>{
+router.get("/allproductspagination", async(req, res)=>{
     let {page, limit} = req.query;
     try {
     if(!page) page = 1;
@@ -104,6 +106,22 @@ router.get("/allproducts", async(req, res)=>{
     }
     })
 
+
+    router.get("/allproducts/:id", async(req, res)=>{
+        const {id} = req.params
+        try {
+            const product = await Products.findById({_id:id})
+            if(!product){
+            return res.status(404).send({ message: "Product not found"})
+            }
+        res.status(200).send(product)
+        } catch (error) {
+            res.status(500).send({
+            message: "Internal server error",
+            error: error
+            })
+        }
+    })
 
 
     //SORTING
