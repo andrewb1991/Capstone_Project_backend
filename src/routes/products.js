@@ -124,31 +124,9 @@ router.get("/allproductspagination", async(req, res)=>{
     })
 
 
-    //SORTING
+    //SORTing
 
-    // Define an array of objects to sort
-const items = [
-    { name: "John", category: "A", age: 30 },
-    { name: "Alice", category: "B", age: 25 },
-    { name: "Bob", category: "A", age: 40 },
-    { name: "Jane", category: "C", age: 35 }
-  ];
-  
-  // Define a route to handle the sorting
-//   app.get('/sort/:category', (req, res) => {
-//     // Get the category from the request parameters
-//     const category = req.params.category;
-  
-//     // Filter the array by category
-//     const filteredItems = items.filter(item => item.category === category);
-  
-//     // Sort the filtered array based on age in descending order
-//     filteredItems.sort((a, b) => b.age - a.age);
-  
-//     // Concatenate the sorted array with the items that didn't match the category
-//     const sortedItems = [...filteredItems, ...items.filter(item => item.category !== category)];
-  
-//     // Send the sorted array as a response
-//     res.send(sortedItems);
+
+
 
 module.exports = router

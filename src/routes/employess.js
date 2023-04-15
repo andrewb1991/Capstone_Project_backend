@@ -24,14 +24,13 @@ code: req.body.code,
 name: req.body.name,
 surname: req.body.surname,
 email: req.body.email,
-password: hashpassword,
-role: req.body.role
+password: hashpassword
 })
 try {
     const newemployee = await employee.save()
     res.status(200).send({
+    payload: newemployee,
     message: "Employee added",
-    error: error
     })
 } catch (error) {
     res.status(500).send({
@@ -103,6 +102,7 @@ router.post("/auth/employees", async(req, res)=>{
     return res.status(400).send("Password non valida")
     }
     const token = jwt.sign({
+    code: employee.code,
     email: employee.email,
     name: employee.name,
     surname: employee.surname,

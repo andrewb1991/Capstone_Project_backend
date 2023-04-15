@@ -92,3 +92,7 @@ Content-Type: application/json
 "password": "employee1234",
 "role": "user"
 }
+
+#####
+
+GET  http://localhost:7070/allproducts/:smartphone
