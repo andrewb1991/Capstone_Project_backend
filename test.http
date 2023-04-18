@@ -96,3 +96,13 @@ Content-Type: application/json
 #####
 
 GET  http://localhost:7070/allproducts/:smartphone
+
+#####
+
+POST http://localhost:7070/login HTTP/1.1
+Content-Type: application/json
+
+{
+"email": "prova4@prova.it",
+"password": "prova1234"
+}

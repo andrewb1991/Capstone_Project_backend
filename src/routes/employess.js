@@ -108,9 +108,9 @@ router.post("/auth/employees", async(req, res)=>{
     surname: employee.surname,
     role: employee.role
     }, process.env.JWT_SECRET, {expiresIn: "15m"})
-    res.header("Authorization", token).status(200).send({
-    token,
-    })
+    res.header("Authorization", token).status(200).send(
+    token
+    )
     })
 
 

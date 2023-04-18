@@ -60,9 +60,10 @@ try {
 })
 
 
+
 router.post("/login", async(req, res)=>{
     const customer = await Customer.findOne({
-    email: req.body.email
+    email: req.body.email,
     })
     if(!customer){
     return res.status(400).send("Utente non trovato")
@@ -72,13 +73,14 @@ router.post("/login", async(req, res)=>{
     return res.status(400).send("Password non valida")
     }
     const token = jwt.sign({
-    email: customer.email,
-    name: customer.name,
-    surname: customer.surname
+        name: customer.name,
+        surname: customer.surname,
+        email: customer.email,
+        id: customer._id
     }, process.env.JWT_SECRET, {expiresIn: "15m"})
-    res.header("Authorization", token).status(200).send({
-    token,
-    })
+    res.header("Authorization", token).status(200).send(
+    token
+    )
     })
 
 module.exports = router
