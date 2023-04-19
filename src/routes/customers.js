@@ -37,13 +37,12 @@ router.get("/login", async(req, res)=>{
 router.post("/register", async(req, res)=>{
     const salt = await bcrypt.genSalt(10)
     const hashpassword = await bcrypt.hash(req.body.password, salt)
-    const result = await cloudinary.upload(req.file)
     const customer = new Customer({
     name: req.body.name,
     surname: req.body.surname,
     email: req.body.email,
     password: hashpassword,
-    imageprofile: result.secure_url
+    imageprofile: req.body.imageprofile
     })
 try {
     const newcustomer = await customer.save()
@@ -76,7 +75,8 @@ router.post("/login", async(req, res)=>{
         name: customer.name,
         surname: customer.surname,
         email: customer.email,
-        id: customer._id
+        id: customer._id,
+        imageprofile: customer.imageprofile
     }, process.env.JWT_SECRET, {expiresIn: "15m"})
     res.header("Authorization", token).status(200).send(
     token

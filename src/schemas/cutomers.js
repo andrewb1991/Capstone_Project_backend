@@ -20,7 +20,7 @@ type: String,
 required: true,
 min: 8
 },
-profileimage: {
+imageprofile: {
 type: String,
 required: true
 }
