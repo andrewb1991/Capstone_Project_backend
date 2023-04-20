@@ -18,6 +18,21 @@ try {
 }
 })
 
+router.get("/allproducts/:id", async(req, res)=>{
+    const {id} = req.params
+    try {
+        const product = await Products.findById({_id:id})
+        if(!product){
+        return res.status(404).send({ message: "Prodotto non trovato"})
+        }
+    res.status(200).send(product)
+    } catch (error) {
+        res.status(500).send({
+        message: "Internal server error",
+        error: error
+        })
+    }
+})
 
 
 router.post("/allproducts",  upload.single('image'), async(req, res)=>{

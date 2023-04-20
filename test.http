@@ -106,3 +106,7 @@ Content-Type: application/json
 "email": "prova4@prova.it",
 "password": "prova1234"
 }
+
+#####
+
+GET http://localhost:7070/allproducts/643843ab0fd959d820a16e50
