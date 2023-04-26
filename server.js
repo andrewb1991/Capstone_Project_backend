@@ -11,12 +11,14 @@ const customersRoute = require("./src/routes/customers")
 const productsRoute = require("./src/routes/products")
 app.use(logMiddlewares)
 const employeesRoute = require("./src/routes/employess")
+const categoryRoute = require("./src/routes/categories")
 
 app.use(express.json())
 app.use(cors())
 app.use(customersRoute)
 app.use(productsRoute)
 app.use(employeesRoute)
+app.use(categoryRoute)
 
 
 mongoose.connect(process.env.MONGO_DB_URL)
@@ -25,5 +27,6 @@ db.on("Error", console.log.bind(console, "Connection Error"))
 db.once("open", ()=>{
     console.log("Connected")
 })
+
 
 app.listen(port, ()=> console.log(`Server ready with port ${port}`))
