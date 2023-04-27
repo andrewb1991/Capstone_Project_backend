@@ -80,7 +80,7 @@ Content-Type: application/json
 # "product": "Samsung Galaxy Buds2 ​​​​​​​",
 # "thumbnail": "https://m.media-amazon.com/images/I/512fuwvAIwL._AC_SL1500_.jpg",
 # "description":"Chiamate chiare: tre microfoni e un'unità di registrazione vocale integrata consentono un'elevata qualità delle chiamate, una soluzione basata sull'apprendimento automatico che filtra il rumore per una buona intelligibilità",
-"price": "89,99"
+"price": "1379,99"
 # "category": "Accessori"
 }
 
@@ -107,7 +107,7 @@ Content-Type: application/json
 
 #####
 
-GET  http://localhost:7070/allproducts/:smartphone
+GET  http://localhost:7070/allproducts/
 
 #####
 
