@@ -16,6 +16,22 @@ try {
 }
 })
 
+router.get("/auth/employees/:id", async(req, res)=>{
+    const {id} = req.params
+    try {
+        const employee = await Employee.findById({_id:id})
+        if(!employee){
+        return res.status(404).send({ message: "Employee not found"})
+        }
+    res.status(200).send(employee)
+    } catch (error) {
+        res.status(500).send({
+        message: "Internal server error",
+        error: error
+        })
+    }
+})
+
 router.post("/register/employees", async(req,res)=>{
 const salt = await bcrypt.genSalt(10)
 const hashpassword = await bcrypt.hash(req.body.password, salt)
